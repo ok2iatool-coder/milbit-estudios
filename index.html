@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Milbit Estudios · Estudio de videojuegos</title>
+  <meta name="description" content="Milbit Estudios es un estudio independiente de videojuegos. Juegos pequeños y terminados. Ahora: Boundland, un plataformas 2D en desarrollo.">
+  <meta property="og:title" content="Milbit Estudios">
+  <meta property="og:description" content="Estudio independiente de videojuegos. Ahora: Boundland, un plataformas 2D en desarrollo.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <!-- La direccion publicada (GitHub Pages, tools/publicar.py). La imagen al compartir va con la URL ENTERA,
+       que es lo que piden las redes; si cambia el dominio, cambiarla aqui, en og:url y en el JSON-LD. -->
+  <link rel="canonical" href="https://ok2iatool-coder.github.io/milbit-estudios/">
+  <meta property="og:url" content="https://ok2iatool-coder.github.io/milbit-estudios/">
+  <meta property="og:image" content="https://ok2iatool-coder.github.io/milbit-estudios/img/compartir.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Boundland: el Sujeto 18 bajo la luz de un fluorescente en un laboratorio a oscuras">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0d0d0c">
+  <script>
+    // Tema antes de pintar nada (sin parpadeo): lo guardado; si no, el del visor que nos aloja
+    // (los Artifacts ponen data-theme en <html>); si no, el del sistema.
+    (function () {
+      var t = null, r = document.documentElement, h = r.getAttribute('data-theme');
+      try { t = localStorage.getItem('milbit-tema'); } catch (e) {}
+      if (t !== 'claro' && t !== 'oscuro') t = h === 'dark' ? 'oscuro' : h === 'light' ? 'claro' : matchMedia('(prefers-color-scheme: dark)').matches ? 'oscuro' : 'claro';
+      r.dataset.tema = t;
+    })();
+  </script>
+  <link rel="icon" href="marca/milbit_icono.svg" type="image/svg+xml">
+  <link rel="preload" href="marca/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="img/anomalia/fondo.webp" as="image">
+  <link rel="stylesheet" href="estilo.css">
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "Organization", "name": "Milbit Estudios",
+   "url": "https://ok2iatool-coder.github.io/milbit-estudios/",
+   "email": "studiosmilbit@gmail.com",
+   "sameAs": ["https://www.tiktok.com/@milbitestudios", "https://www.youtube.com/@MilbitEstudios", "https://x.com/Milbitestudios", "https://www.instagram.com/milbitstudiosoficial"]}
+  </script>
+</head>
+<!-- El correo de contacto va aqui; vacio, la web dice que esta pendiente en vez de inventarse uno. -->
+<body data-correo="studiosmilbit@gmail.com">
+
+<a class="saltar" href="#juegos">Saltar al contenido</a>
+
+<!-- Cabecera oscura en los dos temas, como la portada y el pie: el tema cambia lo de en medio. -->
+<header class="barra">
+  <div class="barra__dentro ancho">
+    <a href="#inicio" class="marca" aria-label="Milbit Estudios, inicio">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M0 100L0 0L20 0L50 46L80 0L100 0L100 100L80 100L80 36.61L50 82.61L20 36.61L20 100Z"/><circle cx="50" cy="16.71" r="10"/></svg>
+      <span>Milbit Estudios</span>
+    </a>
+    <nav class="barra__nav" aria-label="Secciones">
+      <a href="#juegos">Juegos</a>
+      <a href="#imagenes">Imágenes</a>
+      <a href="#estudio">Estudio</a>
+    </nav>
+    <div class="barra__acciones">
+      <button class="tema" type="button" aria-label="Cambiar a modo oscuro">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1a7 7 0 0 1 0 14z" fill="currentColor"/></svg>
+      </button>
+      <a class="pastilla pastilla--llena" href="#contacto">Contacto</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- PORTADA: Boundland a todo lo ancho -->
+  <section id="inicio" class="portada">
+    <!-- la anomalia del nivel 1, sacada del juego (tools/anomalia.py); lo que se mueve lo pinta portada.js -->
+    <div class="portada__arte" aria-hidden="true">
+      <img class="portada__fondo" src="img/anomalia/fondo.webp" alt="" width="3200" height="1800" fetchpriority="high">
+      <canvas class="portada__vivo"></canvas>
+    </div>
+    <div class="portada__dentro ancho">
+      <div class="portada__texto">
+        <img class="portada__logo" src="img/logo_boundland.webp" alt="Boundland" width="960" height="176">
+        <h1>Despierta el Sujeto 18</h1>
+        <p>Treinta años después de la explosión que borró la ciudad de Boundland, en un laboratorio a oscuras, un frasco se agrieta. Un plataformas 2D de Milbit Estudios.</p>
+        <a class="accion" href="#juegos"><span class="accion__circulo" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>Descubrir Boundland</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUESTROS JUEGOS: tarjetas inclinadas -->
+  <section id="juegos" class="bloque ancho juegos">
+    <div class="juegos__texto">
+      <h2>Nuestros juegos</h2>
+      <p>Juegos pequeños y terminados. Uno cada vez.</p>
+    </div>
+    <div class="juegos__fila">
+      <a class="tarjeta" href="#imagenes">
+        <img src="img/tarjeta_boundland.webp" alt="" width="744" height="1200" loading="lazy">
+        <span class="tarjeta__pie">
+          <span class="tarjeta__nombre">Boundland</span>
+          <span class="tarjeta__estado">Plataformas 2D · En desarrollo</span>
+        </span>
+      </a>
+      <div class="tarjeta tarjeta--vacia">
+        <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M0 100L0 0L20 0L50 46L80 0L100 0L100 100L80 100L80 36.61L50 82.61L20 36.61L20 100Z"/><circle cx="50" cy="16.71" r="10"/></svg>
+        <span class="tarjeta__pie">
+          <span class="tarjeta__nombre">Proyecto 02</span>
+          <span class="tarjeta__estado">Próximamente</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOUNDLAND EN IMAGENES: tira que se desliza, con flechas -->
+  <section id="imagenes" class="bloque imagenes">
+    <div class="ancho imagenes__cab">
+      <h2>Boundland en imágenes</h2>
+      <div class="flechas">
+        <button type="button" data-tira="-1" aria-label="Anteriores">←&#xFE0E;</button>
+        <button type="button" data-tira="1" aria-label="Siguientes">→&#xFE0E;</button>
+      </div>
+    </div>
+    <!-- Solo ilustraciones, rotuladas como tales (el 18 en 3D y el 18 en 2D puesto en escena): el juego
+         es 2D y no se ve como ellas. Capturas del juego no hay desde el 19-10 (el usuario quito la ultima);
+         se rehacen cuando el nivel 1 este terminado (boundland/steam/README.md). -->
+    <p class="ancho imagenes__grupo">Ilustraciones</p>
+    <ul class="tira ancho" tabindex="0" aria-label="Ilustraciones de Boundland">
+      <li><figure><img src="img/promo_sujeto18.webp" alt="El Sujeto 18 de pie, solo, bajo un haz de luz en la oscuridad" width="1280" height="720" loading="lazy"><figcaption>El Sujeto 18</figcaption></figure></li>
+      <li><figure><img src="img/promo_estasis.webp" alt="Una fila de cápsulas de estasis en un laboratorio a oscuras; solo brilla la del Sujeto 18" width="1280" height="720" loading="lazy"><figcaption>Dormido</figcaption></figure></li>
+      <li><figure><img src="img/promo_despertar.webp" alt="Un trozo del techo cae sobre la cápsula, revienta el cristal y el Sujeto 18 despierta" width="1280" height="720" loading="lazy"><figcaption>El despertar</figcaption></figure></li>
+      <li><figure><img src="img/promo_afuera.webp" alt="El Sujeto 18, de espaldas a la salida de un conducto, ve por primera vez el bosque iluminado" width="1280" height="720" loading="lazy"><figcaption>Afuera</figcaption></figure></li>
+    </ul>
+  </section>
+
+  <!-- ESTUDIO: panel partido, texto y datos a un lado e imagen al otro -->
+  <section id="estudio" class="bloque estudio">
+    <div class="estudio__texto">
+      <h2>Somos un estudio pequeño</h2>
+      <p>Probamos pronto, terminamos lo que empezamos y escuchamos a quien juega.</p>
+      <dl class="datos">
+        <div class="dato"><dt>Año de fundación</dt><dd>2026</dd></div>
+        <div class="dato"><dt>Juego en desarrollo</dt><dd>1</dd></div>
+      </dl>
+      <a class="pastilla pastilla--llena" href="#contacto">Escríbenos</a>
+    </div>
+    <img class="estudio__foto" src="img/estudio.webp" alt="El laboratorio de Boundland a oscuras: la mesa de los frascos, la consola y una cápsula rota" width="1600" height="900" loading="lazy">
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="bloque ancho contacto">
+    <h2>¿Hablamos?</h2>
+    <p>Prensa, colaboraciones o unirte al estudio.</p>
+    <div class="correo__fila">
+      <a class="correo" data-correo-enlace href="#contacto">Correo, muy pronto.</a>
+      <button class="copiar" type="button" data-copiar hidden>Copiar</button>
+    </div>
+    <p class="contacto__redes">Síguenos</p>
+    <ul class="redes" aria-label="Milbit Estudios en redes">
+      <li><a href="https://www.tiktok.com/@milbitestudios" target="_blank" rel="me noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.2 2.5h3.1a4.9 4.9 0 0 0 4.2 4.2v3.1a8 8 0 0 1-4.2-1.3v6.6a6.6 6.6 0 1 1-6.6-6.6h.5v3.2h-.5a3.4 3.4 0 1 0 3.5 3.4z"/></svg><span>TikTok</span></a></li>
+      <li><a href="https://www.youtube.com/@MilbitEstudios" target="_blank" rel="me noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.6 2.6 0 0 0-1.8 1.8A27 27 0 0 0 2 12a27 27 0 0 0 .4 4.8 2.6 2.6 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.6 2.6 0 0 0 1.8-1.8A27 27 0 0 0 22 12a27 27 0 0 0-.4-4.8zM10 15.1V8.9l5.4 3.1z"/></svg><span>YouTube</span></a></li>
+      <li><a href="https://x.com/Milbitestudios" target="_blank" rel="me noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 3h5l4.2 5.8L17.8 3h2.6l-6.4 7.3L21 21h-5l-4.6-6.3L5.9 21H3.3l6.9-7.9z"/></svg><span>X</span></a></li>
+      <li><a href="https://www.instagram.com/milbitstudiosoficial" target="_blank" rel="me noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3"/></svg><span>Instagram</span></a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="pie__arriba ancho">
+    <a href="#inicio" class="marca" aria-label="Milbit Estudios, inicio">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M0 100L0 0L20 0L50 46L80 0L100 0L100 100L80 100L80 36.61L50 82.61L20 36.61L20 100Z"/><circle cx="50" cy="16.71" r="10"/></svg>
+    </a>
+    <nav class="pie__nav" aria-label="Pie">
+      <a href="#juegos">Juegos</a>
+      <a href="#imagenes">Imágenes</a>
+      <a href="#estudio">Estudio</a>
+      <a href="#contacto">Contacto</a>
+      <button type="button" data-jugar aria-pressed="false">Jugar esta web</button>
+    </nav>
+    <ul class="redes" aria-label="Milbit Estudios en redes">
+      <li><a href="https://www.tiktok.com/@milbitestudios" target="_blank" rel="me noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.2 2.5h3.1a4.9 4.9 0 0 0 4.2 4.2v3.1a8 8 0 0 1-4.2-1.3v6.6a6.6 6.6 0 1 1-6.6-6.6h.5v3.2h-.5a3.4 3.4 0 1 0 3.5 3.4z"/></svg></a></li>
+      <li><a href="https://www.youtube.com/@MilbitEstudios" target="_blank" rel="me noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.6 2.6 0 0 0-1.8 1.8A27 27 0 0 0 2 12a27 27 0 0 0 .4 4.8 2.6 2.6 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.6 2.6 0 0 0 1.8-1.8A27 27 0 0 0 22 12a27 27 0 0 0-.4-4.8zM10 15.1V8.9l5.4 3.1z"/></svg></a></li>
+      <li><a href="https://x.com/Milbitestudios" target="_blank" rel="me noopener" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 3h5l4.2 5.8L17.8 3h2.6l-6.4 7.3L21 21h-5l-4.6-6.3L5.9 21H3.3l6.9-7.9z"/></svg></a></li>
+      <li><a href="https://www.instagram.com/milbitstudiosoficial" target="_blank" rel="me noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3"/></svg></a></li>
+    </ul>
+  </div>
+  <div class="pie__abajo ancho">
+    <p>© <span data-anio>2026</span> Milbit Estudios. Boundland es un juego de Milbit Estudios.</p>
+    <a href="#inicio">Ir al inicio <span aria-hidden="true">↑&#xFE0E;</span></a>
+  </div>
+</footer>
+
+<!-- Jugar esta web: el lienzo va encima de todo sin recibir clics; marcador, final y mandos tactiles. -->
+<canvas id="escena" aria-hidden="true"></canvas>
+<div class="hud" hidden>
+  <span><span class="hud__eti">Bits</span> <b data-hud-bits>0/0</b></span>
+  <b data-hud-tiempo>0:00,0</b>
+  <button type="button" data-mudo aria-pressed="false">Sonido</button>
+  <button type="button" data-salir>Salir <kbd>Esc</kbd></button>
+</div>
+<div class="final" hidden role="dialog" aria-modal="true" aria-labelledby="final-eti">
+  <div class="final__caja">
+    <p class="final__eti" id="final-eti">Terminado</p>
+    <p class="final__cifra" data-final-tiempo>0:00,0</p>
+    <p class="final__det" data-final-det></p>
+    <div class="final__acciones">
+      <button class="pastilla pastilla--llena" type="button" data-otra>Otra vez</button>
+      <button class="pastilla pastilla--borde" type="button" data-salir>Salir</button>
+    </div>
+  </div>
+</div>
+<div class="mandos" hidden>
+  <div>
+    <button type="button" data-mando="izq" aria-label="Izquierda">←&#xFE0E;</button>
+    <button type="button" data-mando="der" aria-label="Derecha">→&#xFE0E;</button>
+  </div>
+  <div>
+    <button type="button" data-mando="bajar" aria-label="Bajar">↓&#xFE0E;</button>
+    <button type="button" data-mando="saltar" aria-label="Saltar">↑&#xFE0E;</button>
+  </div>
+</div>
+
+<script src="main.js"></script>
+<script src="portada.js"></script>
+<script src="juego.js"></script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+/* Milbit Estudios, a la manera de la web de Riot Games: cabecera oscura con menu en versalitas,
+   portada del juego a todo lo ancho con el texto centrado sobre un degradado, tarjetas de juego
+   inclinadas, tira de imagenes con flechas, panel partido con datos y pie oscuro. Inter (SIL OFL,
+   la misma familia que usa Riot) alojada aqui; sin su rojo ni nada de su marca: el acento es la
+   tinta, blanco o negro, como el logo de Milbit.
+   Cabecera, portada y pie son oscuros en los dos temas; el tema cambia las bandas de en medio. */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(marca/Inter-latin.woff2) format('woff2');
+}
+
+/* Modo claro y oscuro. El tema lo pone en <html data-tema> el guion del <head> (lo guardado, el
+   del visor o el del sistema); la consulta de medios es solo para quien navega sin JavaScript. */
+:root {
+  --noche: #0d0d0c;          /* cabecera, portada y pie, en los dos temas */
+  --noche-2: #1a1918;
+  --noche-tinta: #f2f1ee;
+  --noche-gris: #a3a19c;
+  --fondo: #f3f2ef;
+  --banda: #e8e6e2;          /* el panel del estudio, como el gris del «Buscamos gente» */
+  --tinta: #121211;
+  --gris: #5e5c57;
+  --linea: #d8d5cf;
+  --lado: clamp(16px, 4vw, 56px);
+  --hueco: 24px;
+  color-scheme: light;
+}
+:root[data-tema="oscuro"] {
+  --fondo: #161615; --banda: #232221; --tinta: #f2f1ee; --gris: #a3a19c; --linea: #33322f; color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema]) {
+    --fondo: #161615; --banda: #232221; --tinta: #f2f1ee; --gris: #a3a19c; --linea: #33322f; color-scheme: dark;
+  }
+}
+
+/* Cambio de modo: fundido lento de toda la pagina (main.js lo lanza con startViewTransition) */
+::view-transition-old(root), ::view-transition-new(root) {
+  animation-duration: .6s;
+  animation-timing-function: cubic-bezier(.4, 0, .2, 1);
+}
+
+/* ---------------------------------------------------------------- base */
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--tinta);
+  font: 400 16px/1.5 'Inter', system-ui, sans-serif;
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--tinta); color: var(--fondo); }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p, ul, dl, dd, figure { margin: 0; }
+h1, h2, h3, p { text-wrap: balance; }
+a:focus-visible, button:focus-visible, .tira:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+kbd { font: inherit; font-size: .85em; border: 1px solid currentColor; border-radius: 4px; padding: 0 5px; opacity: .7; }
+
+.ancho {
+  max-width: 1440px; margin-left: auto; margin-right: auto;
+  padding-left: max(var(--lado), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--lado), env(safe-area-inset-right, 0px));
+}
+.saltar { position: absolute; left: -9999px; top: 8px; background: var(--noche-tinta); color: var(--noche); padding: 8px 12px; z-index: 30; font-size: 14px; }
+.saltar:focus { left: 8px; }
+
+/* pastillas: el boton de Riot, sin su rojo */
+.pastilla {
+  appearance: none; display: inline-flex; align-items: center; justify-content: center; height: 38px; padding: 0 20px;
+  border-radius: 999px; border: 1.5px solid currentColor; background: none; color: inherit; cursor: pointer;
+  font: inherit; font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
+  transition: background .2s, color .2s, border-color .2s, transform .2s;
+}
+.pastilla--llena { background: var(--tinta); border-color: var(--tinta); color: var(--fondo); }
+.pastilla--llena:hover { transform: translateY(-1px); }
+.pastilla--borde:hover { background: var(--tinta); border-color: var(--tinta); color: var(--fondo); }
+
+/* ---------------------------------------------------------------- cabecera */
+.barra { position: sticky; top: 0; z-index: 20; background: var(--noche); color: var(--noche-tinta); padding-top: env(safe-area-inset-top, 0px); }
+.barra__dentro { display: flex; align-items: center; gap: clamp(20px, 3vw, 44px); height: 72px; }
+.marca { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+.marca svg { width: 24px; height: 24px; fill: currentColor; flex: none; }
+.barra__nav { display: flex; gap: clamp(20px, 2.6vw, 36px); margin-right: auto; }
+.barra__nav a, .pie__nav a, .pie__nav button {
+  font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--noche-tinta);
+  transition: color .15s;
+}
+.barra__nav a:hover, .pie__nav a:hover, .pie__nav button:hover { color: var(--noche-gris); }
+.barra__acciones { display: flex; align-items: center; gap: 12px; }
+.barra .pastilla--llena { background: var(--noche-tinta); border-color: var(--noche-tinta); color: var(--noche); }
+.barra .pastilla--borde:hover { background: var(--noche-tinta); border-color: var(--noche-tinta); color: var(--noche); }
+.tema {
+  appearance: none; background: none; border: 0; width: 36px; height: 36px; padding: 0;
+  color: var(--noche-tinta); cursor: pointer; display: grid; place-items: center;
+}
+.tema svg { width: 16px; height: 16px; display: block; }
+
+/* ---------------------------------------------------------------- portada */
+.portada {
+  position: relative; overflow: hidden; background: var(--noche); color: var(--noche-tinta);
+  min-height: clamp(560px, calc(100vh - 72px), 860px); display: grid; align-items: center;
+}
+/* el arte: la foto de la anomalia del juego y, encima, el lienzo con lo que se mueve (portada.js: el 18
+   flotando, la cascada con sus hebras, las piezas y el polvo). La foto la mueve portada.js al bajar. */
+.portada__arte { position: absolute; inset: 0; overflow: hidden; }
+.portada__fondo { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 50%; will-change: transform; }
+.portada__vivo { position: absolute; inset: 0; width: 100%; height: 100%; }
+.portada::after {   /* el degradado que deja leer el texto, y el fundido hacia la banda de abajo */
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(8, 10, 14, .82) 0%, rgba(8, 10, 14, .55) 34%, rgba(8, 10, 14, 0) 62%),
+    linear-gradient(0deg, rgba(8, 10, 14, .6) 0%, rgba(8, 10, 14, 0) 30%);
+}
+.portada__dentro { position: relative; z-index: 1; width: 100%; padding-top: 64px; padding-bottom: 72px; }
+.portada__texto { width: min(560px, 100%); display: grid; justify-items: center; text-align: center; gap: 20px; }
+.portada__logo { width: min(440px, 100%); height: auto; filter: drop-shadow(0 4px 24px rgba(0, 0, 0, .5)); }
+.portada h1 { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.02; font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase; }
+.portada p { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.45; color: #dcdad5; max-width: 30em; }
+
+/* la llamada grande de la portada: pastilla con un circulo y una flecha */
+.accion {
+  display: inline-flex; align-items: center; gap: 14px; margin-top: 8px; padding: 8px 28px 8px 8px; border-radius: 999px;
+  background: var(--noche-tinta); color: var(--noche); font-size: clamp(18px, 1.6vw, 22px); font-weight: 700; letter-spacing: -0.01em;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35); transition: transform .2s, box-shadow .2s;
+}
+.accion:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0, 0, 0, .45); }
+.accion__circulo { width: 44px; height: 44px; border-radius: 50%; background: var(--noche); color: var(--noche-tinta); display: grid; place-items: center; transition: transform .2s; }
+.accion__circulo svg { width: 18px; height: 18px; }
+.accion:hover .accion__circulo { transform: translateX(3px); }
+
+/* ---------------------------------------------------------------- bandas */
+.bloque { padding-top: clamp(64px, 8vw, 120px); }
+.bloque h2 { font-size: clamp(32px, 3.4vw, 48px); line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; }
+
+/* nuestros juegos: texto a un lado y tarjetas inclinadas al otro */
+.juegos { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--hueco); align-items: center; }
+.juegos__texto { grid-column: 1 / span 4; display: grid; gap: 16px; }
+.juegos__texto p { font-size: 18px; color: var(--gris); max-width: 20em; }
+.juegos__fila { grid-column: 5 / span 8; display: flex; gap: 6px; justify-content: flex-end; }
+.tarjeta {
+  --corte: 9%;
+  position: relative; display: block; width: min(330px, 50%); aspect-ratio: 0.62; overflow: hidden; background: var(--noche-2); color: var(--noche-tinta);
+  clip-path: polygon(var(--corte) 0, 100% 0, calc(100% - var(--corte)) 100%, 0 100%);
+  transition: clip-path .35s cubic-bezier(.2, .7, .2, 1), transform .35s cubic-bezier(.2, .7, .2, 1);
+}
+.tarjeta + .tarjeta { margin-left: -24px; }    /* se solapan por el corte, como las de Riot */
+.tarjeta img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+.tarjeta:hover { --corte: 4%; transform: translateY(-6px); }
+.tarjeta:hover img { transform: scale(1.04); }
+.tarjeta__pie {
+  position: absolute; left: 0; right: 0; bottom: 0; display: grid; gap: 4px; padding: 64px 14% 26px;
+  background: linear-gradient(0deg, rgba(8, 10, 14, .92), rgba(8, 10, 14, 0)); text-align: center;
+}
+.tarjeta__nombre { font-size: 22px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; }
+.tarjeta__estado { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--noche-gris); }
+.tarjeta--vacia { display: grid; place-items: center; background: linear-gradient(160deg, #26241f, #121110); }
+.tarjeta--vacia svg { width: 34%; fill: rgba(242, 241, 238, .1); }
+
+/* tira de imagenes con flechas */
+.imagenes__cab { display: flex; align-items: end; justify-content: space-between; gap: var(--hueco); margin-bottom: 28px; }
+.flechas { display: flex; align-items: center; }
+.flechas button {
+  appearance: none; background: none; border: 0; width: 44px; height: 44px; color: var(--tinta); font: inherit; font-size: 20px; cursor: pointer;
+  transition: opacity .15s;
+}
+.flechas button + button { border-left: 1.5px solid var(--linea); }
+.flechas button:disabled { opacity: .3; cursor: default; }
+.tira {
+  list-style: none; margin: 0; display: grid; grid-auto-flow: column; grid-auto-columns: clamp(280px, 30vw, 440px); gap: 12px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; overscroll-behavior-x: contain;
+  scroll-padding-left: max(var(--lado), env(safe-area-inset-left, 0px));
+}
+.tira::-webkit-scrollbar { display: none; }
+.tira li { scroll-snap-align: start; }
+.tira figure { position: relative; overflow: hidden; border-radius: 4px; background: var(--noche-2); }
+.tira img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+.tira figure:hover img { transform: scale(1.05); }
+.tira figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 18px 14px; color: var(--noche-tinta);
+  font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  background: linear-gradient(0deg, rgba(8, 10, 14, .85), rgba(8, 10, 14, 0));
+}
+/* las ilustraciones van rotuladas como tales: el juego es 2D y ellas no */
+.imagenes__grupo { margin-bottom: 14px; font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gris); }
+
+/* estudio: panel partido */
+.estudio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); margin-top: clamp(64px, 8vw, 120px); padding-top: 0; }
+.estudio__texto {
+  background: var(--banda); display: grid; align-content: center; justify-items: center; text-align: center; gap: 20px;
+  padding: clamp(48px, 6vw, 88px) max(var(--lado), env(safe-area-inset-left, 0px));
+}
+.estudio__texto p { font-size: 18px; color: var(--gris); max-width: 24em; }
+.datos { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 8px 0; }
+.dato { display: flex; flex-direction: column-reverse; align-items: center; min-width: 168px; padding: 16px 20px; border-radius: 4px; background: var(--fondo); }
+.dato dd { font-size: 40px; font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.dato dt { font-size: 15px; font-weight: 500; color: var(--gris); }
+.estudio__foto { width: 100%; height: 100%; min-height: 360px; object-fit: cover; clip-path: polygon(7% 0, 100% 0, 100% 100%, 0 100%); }
+
+/* contacto */
+.contacto { display: grid; justify-items: start; gap: 12px; padding-bottom: clamp(64px, 8vw, 120px); }
+.contacto p { font-size: 18px; color: var(--gris); }
+.correo { margin-top: 12px; font-size: clamp(20px, 2vw, 28px); font-weight: 600; letter-spacing: -0.02em; border-bottom: 2px solid currentColor; }
+.correo:hover { color: var(--gris); }
+.correo.pendiente { color: var(--gris); border-bottom: 0; }
+.correo__fila { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 12px; }
+.correo__fila .correo { margin-top: 0; }
+.copiar {
+  appearance: none; height: 32px; padding: 0 14px; border-radius: 999px; border: 1.5px solid var(--linea); background: none;
+  color: var(--gris); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: color .15s, border-color .15s;
+}
+.copiar:hover { color: var(--tinta); border-color: var(--tinta); }
+
+/* redes: con su nombre en Contacto y solo el icono en el pie */
+.redes { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.redes a { display: inline-flex; align-items: center; gap: 8px; transition: color .15s, border-color .15s; }
+.redes svg { width: 20px; height: 20px; fill: currentColor; flex: none; }
+.contacto__redes { margin-top: 28px; font-size: 12.5px !important; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.contacto .redes a { height: 42px; padding: 0 18px 0 14px; border: 1.5px solid var(--linea); border-radius: 999px; font-size: 14px; font-weight: 600; }
+.contacto .redes a:hover { border-color: var(--tinta); }
+.pie .redes { margin-left: auto; gap: 20px; }
+.pie .redes a { color: var(--noche-tinta); }
+.pie .redes a:hover { color: var(--noche-gris); }
+
+/* ---------------------------------------------------------------- pie */
+.pie { background: var(--noche); color: var(--noche-tinta); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.pie__arriba { display: flex; align-items: center; gap: clamp(24px, 4vw, 56px); padding-top: 36px; padding-bottom: 32px; }
+.pie__arriba .marca svg { width: 32px; height: 32px; }
+.pie__nav { display: flex; flex-wrap: wrap; gap: 14px clamp(20px, 2.6vw, 36px); }
+.pie__nav button { appearance: none; background: none; border: 0; padding: 0; font: inherit; font-size: 12.5px; cursor: pointer; }
+.pie__abajo {
+  display: flex; justify-content: space-between; gap: var(--hueco); align-items: center;
+  padding-top: 20px; padding-bottom: 28px; border-top: 1px solid #2c2b29; font-size: 12.5px; color: var(--noche-gris);
+}
+.pie__abajo a { font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--noche-tinta); white-space: nowrap; }
+
+/* ---------------------------------------------------------------- jugar esta web */
+#escena { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 25; }
+body.jugando { -webkit-user-select: none; user-select: none; }
+.hud {
+  position: fixed; z-index: 26; top: calc(env(safe-area-inset-top, 0px) + 84px); left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 18px; padding: 6px 6px 6px 20px; white-space: nowrap; border-radius: 999px;
+  background: var(--noche); color: var(--noche-tinta); box-shadow: 0 8px 28px rgba(0, 0, 0, .35); font-size: 14px; font-variant-numeric: tabular-nums;
+}
+.hud b { font-weight: 700; }
+.hud__eti { color: var(--noche-gris); }
+.hud button { appearance: none; background: none; border: 0; padding: 6px 12px; color: var(--noche-gris); font: inherit; cursor: pointer; border-radius: 999px; }
+.hud button:hover, .hud button[aria-pressed="true"] { color: var(--noche-tinta); }
+.final {
+  position: fixed; z-index: 27; inset: 0; display: grid; place-items: center;
+  padding: 16px max(16px, env(safe-area-inset-left, 0px)); background: rgba(8, 10, 14, .55);
+}
+.final__caja { width: min(440px, 100%); background: var(--fondo); color: var(--tinta); border-radius: 8px; padding: clamp(28px, 5vw, 44px); box-shadow: 0 24px 60px rgba(0, 0, 0, .4); }
+.final__eti { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gris); }
+.final__cifra { margin-top: 8px; font-size: clamp(56px, 12vw, 88px); font-weight: 800; line-height: 1; letter-spacing: -0.045em; font-variant-numeric: tabular-nums; }
+.final__det { margin-top: 12px; color: var(--gris); }
+.final__acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.mandos {
+  position: fixed; z-index: 26; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; pointer-events: none;
+  padding: 16px max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+.mandos div { display: flex; gap: 12px; pointer-events: auto; }
+.mandos button {
+  appearance: none; width: 64px; height: 64px; border-radius: 50%; border: 0; color: var(--noche-tinta); font: inherit; font-size: 22px;
+  background: rgba(13, 13, 12, .78); touch-action: none; -webkit-user-select: none; user-select: none;
+}
+.mandos button.pulsado { background: var(--noche-tinta); color: var(--noche); }
+
+/* ---------------------------------------------------------------- tableta y movil */
+@media (max-width: 1080px) {
+  /* sin sitio al lado del texto: el arte arriba, con el 18 en medio, y el texto debajo */
+  .portada { display: block; min-height: 0; }
+  .portada__arte { position: relative; height: clamp(380px, 62vw, 620px); }
+  .portada__arte::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(13, 13, 12, 0) 70%, var(--noche) 100%); }
+  .portada::after { display: none; }
+  .portada__dentro { margin-top: -28px; padding-top: 0; padding-bottom: 56px; }
+  .portada__texto { margin: 0 auto; }
+  .juegos__texto, .juegos__fila { grid-column: 1 / -1; }
+  .juegos__fila { justify-content: flex-start; }
+  .estudio { grid-template-columns: 1fr; }
+  .estudio__foto { clip-path: none; min-height: 0; aspect-ratio: 16 / 9; }
+}
+@media (max-width: 760px) {
+  .barra__nav, .solo-ancho { display: none; }
+  .barra__dentro { gap: 12px; }
+  .barra__acciones { margin-left: auto; }
+  .portada__texto { width: 100%; }
+  .portada__logo { width: min(320px, 90%); }
+  .tarjeta { width: 50%; }
+  .tarjeta__pie { padding: 48px 16% 20px; }
+  .tarjeta__nombre { font-size: 16px; }
+  .tarjeta__estado { font-size: 10.5px; }
+  .dato { min-width: 136px; padding: 14px 12px; }
+  .pie__arriba { flex-direction: column; align-items: flex-start; }
+  .pie .redes { margin-left: 0; }
+  .pie__abajo { flex-direction: column; align-items: flex-start; }
+  .hud { gap: 8px; padding-left: 14px; font-size: 13px; top: calc(env(safe-area-inset-top, 0px) + 72px); }
+  .hud [data-mudo] { display: none; }
+}
