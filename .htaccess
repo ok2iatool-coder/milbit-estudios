@@ -1,0 +1,7 @@
+RewriteEngine On
+# una sola direccion: https y sin www
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://milbitestudios.com%{REQUEST_URI} [L,R=301]
+# el despliegue por Git deja el clon en la carpeta publica: que no se sirva
+RewriteRule (^|/)\.git(/|$) - [F,L]
