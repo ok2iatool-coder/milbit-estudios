@@ -45,7 +45,7 @@
   // todo (piezas, cascada, el 18) va con las mismas cuentas: la composicion es la del juego.
   let W = 0, H = 0, dpr = 1, esc = 1, ox = 0, oy = 0, u = 1, sx = 0, sy = 0, cx = 0;
   const [P18x, P18y] = D.sujeto_en, FW = D.fondo.w, FH = D.fondo.h;
-  const AJUSTE = { cadena: [150, 0] };             // la cadena un poco hacia el 18: en su sitio cruzaba el titular
+  const AJUSTE = { cadena: [270, 0] };             // la cadena hacia el 18: en su sitio cruzaba el titular
   function medir() {
     const r = arte.getBoundingClientRect();
     if (!r.width) return;
