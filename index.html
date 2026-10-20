@@ -178,7 +178,6 @@
       <a href="#imagenes">Imágenes</a>
       <a href="#estudio">Estudio</a>
       <a href="#contacto">Contacto</a>
-      <button type="button" data-jugar aria-pressed="false">Jugar esta web</button>
     </nav>
     <ul class="redes" aria-label="Milbit Estudios en redes">
       <li><a href="https://www.tiktok.com/@milbitestudios" target="_blank" rel="me noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.2 2.5h3.1a4.9 4.9 0 0 0 4.2 4.2v3.1a8 8 0 0 1-4.2-1.3v6.6a6.6 6.6 0 1 1-6.6-6.6h.5v3.2h-.5a3.4 3.4 0 1 0 3.5 3.4z"/></svg></a></li>
@@ -193,38 +192,7 @@
   </div>
 </footer>
 
-<!-- Jugar esta web: el lienzo va encima de todo sin recibir clics; marcador, final y mandos tactiles. -->
-<canvas id="escena" aria-hidden="true"></canvas>
-<div class="hud" hidden>
-  <span><span class="hud__eti">Bits</span> <b data-hud-bits>0/0</b></span>
-  <b data-hud-tiempo>0:00,0</b>
-  <button type="button" data-mudo aria-pressed="false">Sonido</button>
-  <button type="button" data-salir>Salir <kbd>Esc</kbd></button>
-</div>
-<div class="final" hidden role="dialog" aria-modal="true" aria-labelledby="final-eti">
-  <div class="final__caja">
-    <p class="final__eti" id="final-eti">Terminado</p>
-    <p class="final__cifra" data-final-tiempo>0:00,0</p>
-    <p class="final__det" data-final-det></p>
-    <div class="final__acciones">
-      <button class="pastilla pastilla--llena" type="button" data-otra>Otra vez</button>
-      <button class="pastilla pastilla--borde" type="button" data-salir>Salir</button>
-    </div>
-  </div>
-</div>
-<div class="mandos" hidden>
-  <div>
-    <button type="button" data-mando="izq" aria-label="Izquierda">←&#xFE0E;</button>
-    <button type="button" data-mando="der" aria-label="Derecha">→&#xFE0E;</button>
-  </div>
-  <div>
-    <button type="button" data-mando="bajar" aria-label="Bajar">↓&#xFE0E;</button>
-    <button type="button" data-mando="saltar" aria-label="Saltar">↑&#xFE0E;</button>
-  </div>
-</div>
-
 <script src="main.js"></script>
 <script src="portada.js"></script>
-<script src="juego.js"></script>
 </body>
 </html>

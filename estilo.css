@@ -92,11 +92,11 @@ kbd { font: inherit; font-size: .85em; border: 1px solid currentColor; border-ra
 .marca { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
 .marca svg { width: 24px; height: 24px; fill: currentColor; flex: none; }
 .barra__nav { display: flex; gap: clamp(20px, 2.6vw, 36px); margin-right: auto; }
-.barra__nav a, .pie__nav a, .pie__nav button {
+.barra__nav a, .pie__nav a {
   font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--noche-tinta);
   transition: color .15s;
 }
-.barra__nav a:hover, .pie__nav a:hover, .pie__nav button:hover { color: var(--noche-gris); }
+.barra__nav a:hover, .pie__nav a:hover { color: var(--noche-gris); }
 .barra__acciones { display: flex; align-items: center; gap: 12px; }
 .barra .pastilla--llena { background: var(--noche-tinta); border-color: var(--noche-tinta); color: var(--noche); }
 .barra .pastilla--borde:hover { background: var(--noche-tinta); border-color: var(--noche-tinta); color: var(--noche); }
@@ -237,44 +237,11 @@ kbd { font: inherit; font-size: .85em; border: 1px solid currentColor; border-ra
 .pie__arriba { display: flex; align-items: center; gap: clamp(24px, 4vw, 56px); padding-top: 36px; padding-bottom: 32px; }
 .pie__arriba .marca svg { width: 32px; height: 32px; }
 .pie__nav { display: flex; flex-wrap: wrap; gap: 14px clamp(20px, 2.6vw, 36px); }
-.pie__nav button { appearance: none; background: none; border: 0; padding: 0; font: inherit; font-size: 12.5px; cursor: pointer; }
 .pie__abajo {
   display: flex; justify-content: space-between; gap: var(--hueco); align-items: center;
   padding-top: 20px; padding-bottom: 28px; border-top: 1px solid #2c2b29; font-size: 12.5px; color: var(--noche-gris);
 }
 .pie__abajo a { font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--noche-tinta); white-space: nowrap; }
-
-/* ---------------------------------------------------------------- jugar esta web */
-#escena { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 25; }
-body.jugando { -webkit-user-select: none; user-select: none; }
-.hud {
-  position: fixed; z-index: 26; top: calc(env(safe-area-inset-top, 0px) + 84px); left: 50%; transform: translateX(-50%);
-  display: flex; align-items: center; gap: 18px; padding: 6px 6px 6px 20px; white-space: nowrap; border-radius: 999px;
-  background: var(--noche); color: var(--noche-tinta); box-shadow: 0 8px 28px rgba(0, 0, 0, .35); font-size: 14px; font-variant-numeric: tabular-nums;
-}
-.hud b { font-weight: 700; }
-.hud__eti { color: var(--noche-gris); }
-.hud button { appearance: none; background: none; border: 0; padding: 6px 12px; color: var(--noche-gris); font: inherit; cursor: pointer; border-radius: 999px; }
-.hud button:hover, .hud button[aria-pressed="true"] { color: var(--noche-tinta); }
-.final {
-  position: fixed; z-index: 27; inset: 0; display: grid; place-items: center;
-  padding: 16px max(16px, env(safe-area-inset-left, 0px)); background: rgba(8, 10, 14, .55);
-}
-.final__caja { width: min(440px, 100%); background: var(--fondo); color: var(--tinta); border-radius: 8px; padding: clamp(28px, 5vw, 44px); box-shadow: 0 24px 60px rgba(0, 0, 0, .4); }
-.final__eti { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gris); }
-.final__cifra { margin-top: 8px; font-size: clamp(56px, 12vw, 88px); font-weight: 800; line-height: 1; letter-spacing: -0.045em; font-variant-numeric: tabular-nums; }
-.final__det { margin-top: 12px; color: var(--gris); }
-.final__acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-.mandos {
-  position: fixed; z-index: 26; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; pointer-events: none;
-  padding: 16px max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
-}
-.mandos div { display: flex; gap: 12px; pointer-events: auto; }
-.mandos button {
-  appearance: none; width: 64px; height: 64px; border-radius: 50%; border: 0; color: var(--noche-tinta); font: inherit; font-size: 22px;
-  background: rgba(13, 13, 12, .78); touch-action: none; -webkit-user-select: none; user-select: none;
-}
-.mandos button.pulsado { background: var(--noche-tinta); color: var(--noche); }
 
 /* ---------------------------------------------------------------- tableta y movil */
 @media (max-width: 1080px) {
@@ -304,6 +271,4 @@ body.jugando { -webkit-user-select: none; user-select: none; }
   .pie__arriba { flex-direction: column; align-items: flex-start; }
   .pie .redes { margin-left: 0; }
   .pie__abajo { flex-direction: column; align-items: flex-start; }
-  .hud { gap: 8px; padding-left: 14px; font-size: 13px; top: calc(env(safe-area-inset-top, 0px) + 72px); }
-  .hud [data-mudo] { display: none; }
 }
