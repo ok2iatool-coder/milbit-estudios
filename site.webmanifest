@@ -1,0 +1,19 @@
+{
+ "name": "Milbit Estudios",
+ "short_name": "Milbit",
+ "icons": [
+  {
+   "src": "marca/icono-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "marca/icono-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  }
+ ],
+ "theme_color": "#0d0d0c",
+ "background_color": "#0d0d0c",
+ "display": "browser"
+}
