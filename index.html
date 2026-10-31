@@ -45,6 +45,15 @@
    "email": "studiosmilbit@gmail.com",
    "sameAs": ["https://www.tiktok.com/@milbitestudios", "https://www.youtube.com/@MilbitEstudios", "https://x.com/Milbitestudios", "https://www.instagram.com/milbitstudiosoficial"]}
   </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "VideoGame", "name": "Boundland",
+   "url": "https://store.steampowered.com/app/4356580/Boundland/",
+   "description": "Un juego de plataformas y acción oscuro en el que trepas, te balanceas y luchas por una capital en ruinas invadida por insectos gigantes y una Podredumbre fúngica que lo devora todo.",
+   "genre": ["Plataformas", "Acción"], "gamePlatform": "PC", "operatingSystem": "Windows", "playMode": "SinglePlayer",
+   "inLanguage": ["es", "en"],
+   "author": {"@type": "Organization", "name": "Milbit Estudios", "url": "https://milbitestudios.com/"},
+   "publisher": {"@type": "Organization", "name": "Milbit Estudios", "url": "https://milbitestudios.com/"}}
+  </script>
 </head>
 <!-- El correo de contacto va aqui; vacio, la web dice que esta pendiente en vez de inventarse uno. -->
 <body data-correo="studiosmilbit@gmail.com">
@@ -82,10 +91,13 @@
     </div>
     <div class="portada__dentro ancho">
       <div class="portada__texto">
-        <img class="portada__logo" src="img/logo_boundland.webp" alt="Boundland" width="960" height="176">
+        <img class="portada__logo" src="img/logo_boundland.webp" alt="Boundland" width="1243" height="187">
         <h1>Despierta el Sujeto 18</h1>
         <p>Treinta años después de la explosión que borró la ciudad de Boundland, en un laboratorio a oscuras, un frasco se agrieta. Un plataformas 2D de Milbit Estudios.</p>
-        <a class="accion" href="#juegos"><span class="accion__circulo" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>Descubrir Boundland</a>
+        <div class="portada__acciones">
+          <a class="accion" href="https://store.steampowered.com/app/4356580/Boundland/" target="_blank" rel="noopener"><span class="accion__circulo" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3.5 12.5l9-9M6 3.5h6.5V10" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>Ver en Steam</a>
+          <a class="accion accion--borde" href="#boundland">Descubrir Boundland</a>
+        </div>
       </div>
     </div>
   </section>
@@ -97,7 +109,7 @@
       <p>Juegos pequeños y terminados. Uno cada vez.</p>
     </div>
     <div class="juegos__fila">
-      <a class="tarjeta" href="#imagenes">
+      <a class="tarjeta" href="#boundland">
         <img src="img/tarjeta_boundland.webp" alt="" width="744" height="1200" loading="lazy">
         <span class="tarjeta__pie">
           <span class="tarjeta__nombre">Boundland</span>
@@ -112,6 +124,25 @@
         </span>
       </div>
     </div>
+  </section>
+
+  <!-- BOUNDLAND: la ficha, con los datos de su pagina de Steam (comprobados el 2026-10-31: si cambian alli,
+       cambiarlos aqui). La descripcion es la breve de la tienda en espanol, tal cual. -->
+  <section id="boundland" class="bloque ancho ficha">
+    <div class="ficha__texto">
+      <h2>Boundland</h2>
+      <p>Un juego de plataformas y acción oscuro en el que trepas, te balanceas y luchas por una capital en ruinas invadida por insectos gigantes y una Podredumbre fúngica que lo devora todo. Sobrevive a los enjambres y descubre la verdad sobre tu creación.</p>
+      <p>Aún no ha salido: añádelo a tu lista de deseados en Steam y te avisará el día que esté disponible.</p>
+      <a class="pastilla pastilla--llena" href="https://store.steampowered.com/app/4356580/Boundland/" target="_blank" rel="noopener">Añadir a deseados en Steam</a>
+    </div>
+    <dl class="ficha__datos">
+      <div><dt>Género</dt><dd>Plataformas y acción 2D</dd></div>
+      <div><dt>Lanzamiento</dt><dd>Próximamente</dd></div>
+      <div><dt>Plataforma</dt><dd>PC (Windows) · Steam</dd></div>
+      <div><dt>Modo</dt><dd>Un jugador</dd></div>
+      <div><dt>Idiomas</dt><dd>Español e inglés</dd></div>
+      <div><dt>Desarrolla y edita</dt><dd>Milbit Estudios</dd></div>
+    </dl>
   </section>
 
   <!-- BOUNDLAND EN IMAGENES: tira que se desliza, con flechas -->
@@ -130,7 +161,6 @@
     <ul class="tira ancho" tabindex="0" aria-label="Ilustraciones de Boundland">
       <li><figure><img src="img/promo_sujeto18.webp" alt="El Sujeto 18 de pie, solo, bajo un haz de luz en la oscuridad" width="1280" height="720" loading="lazy"><figcaption>El Sujeto 18</figcaption></figure></li>
       <li><figure><img src="img/promo_estasis.webp" alt="Una fila de cápsulas de estasis en un laboratorio a oscuras; solo brilla la del Sujeto 18" width="1280" height="720" loading="lazy"><figcaption>Dormido</figcaption></figure></li>
-      <li><figure><img src="img/promo_despertar.webp" alt="Un trozo del techo cae sobre la cápsula, revienta el cristal y el Sujeto 18 despierta" width="1280" height="720" loading="lazy"><figcaption>El despertar</figcaption></figure></li>
       <li><figure><img src="img/promo_despertar_2d.webp" alt="Dibujo del juego: una roca cae del techo sobre la cápsula, tuerce la tapa y revienta el cristal; dentro, el Sujeto 18 despierto" width="1280" height="720" loading="lazy"><figcaption>El despertar, en 2D</figcaption></figure></li>
     </ul>
     <!-- El cartel (2026-10-31): vertical y entero en su propio hueco, porque la tira lo recortaria a 16:9;

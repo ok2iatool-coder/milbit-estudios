@@ -138,6 +138,14 @@ kbd { font: inherit; font-size: .85em; border: 1px solid currentColor; border-ra
 .accion__circulo { width: 44px; height: 44px; border-radius: 50%; background: var(--noche); color: var(--noche-tinta); display: grid; place-items: center; transition: transform .2s; }
 .accion__circulo svg { width: 18px; height: 18px; }
 .accion:hover .accion__circulo { transform: translateX(3px); }
+/* las dos llamadas de la portada: Steam (la llena, sale de la web) y bajar a la ficha (la de borde) */
+.portada__acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
+.portada__acciones .accion { margin-top: 0; }
+.accion--borde {
+  min-height: 60px; padding: 0 28px; background: none; color: var(--noche-tinta); box-shadow: none;
+  border: 1.5px solid rgba(242, 241, 238, .55);
+}
+.accion--borde:hover { background: rgba(242, 241, 238, .1); border-color: var(--noche-tinta); box-shadow: none; }
 
 /* ---------------------------------------------------------------- bandas */
 .bloque { padding-top: clamp(64px, 8vw, 120px); }
@@ -166,6 +174,16 @@ kbd { font: inherit; font-size: .85em; border: 1px solid currentColor; border-ra
 .tarjeta__estado { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--noche-gris); }
 .tarjeta--vacia { display: grid; place-items: center; background: linear-gradient(160deg, #26241f, #121110); }
 .tarjeta--vacia svg { width: 34%; fill: rgba(242, 241, 238, .1); }
+
+/* boundland: la ficha del juego, el texto a un lado y los datos de su pagina de Steam al otro */
+.ficha { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+.ficha__texto { display: grid; justify-items: start; gap: 16px; }
+.ficha__texto p { font-size: 18px; color: var(--gris); max-width: 28em; }
+.ficha__texto .pastilla { margin-top: 8px; height: 44px; padding: 0 24px; }
+.ficha__datos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--hueco); }
+.ficha__datos div { padding: 18px 0 20px; border-top: 1px solid var(--linea); }
+.ficha__datos dt { font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gris); }
+.ficha__datos dd { margin-top: 6px; font-size: clamp(18px, 1.6vw, 22px); font-weight: 700; letter-spacing: -0.01em; }
 
 /* tira de imagenes con flechas */
 .imagenes__cab { display: flex; align-items: end; justify-content: space-between; gap: var(--hueco); margin-bottom: 28px; }
@@ -265,7 +283,7 @@ kbd { font: inherit; font-size: .85em; border: 1px solid currentColor; border-ra
   .portada__texto { margin: 0 auto; }
   .juegos__texto, .juegos__fila { grid-column: 1 / -1; }
   .juegos__fila { justify-content: flex-start; }
-  .estudio { grid-template-columns: 1fr; }
+  .estudio, .ficha { grid-template-columns: 1fr; }
   .estudio__foto { clip-path: none; min-height: 0; aspect-ratio: 16 / 9; }
 }
 @media (max-width: 760px) {
