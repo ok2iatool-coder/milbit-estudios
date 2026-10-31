@@ -193,6 +193,17 @@ kbd { font: inherit; font-size: .85em; border: 1px solid currentColor; border-ra
 }
 /* las ilustraciones van rotuladas como tales: el juego es 2D y ellas no */
 .imagenes__grupo { margin-bottom: 14px; font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gris); }
+/* el cartel: vertical y entero, sobre una banda con la misma imagen desenfocada */
+.imagenes__grupo--cartel { margin-top: clamp(40px, 5vw, 64px); }
+.cartel {
+  position: relative; overflow: hidden; display: grid; place-items: center; margin: 0;
+  padding: clamp(28px, 4vw, 56px) max(var(--lado), env(safe-area-inset-left, 0px)); background: var(--noche-2);
+}
+.cartel__fondo {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  filter: blur(48px) brightness(.5) saturate(1.1); transform: scale(1.2);
+}
+.cartel__img { position: relative; width: min(100%, 560px, calc((100svh - 160px) * .8)); height: auto; border-radius: 4px; box-shadow: 0 24px 60px rgba(0, 0, 0, .5); }
 
 /* estudio: panel partido */
 .estudio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); margin-top: clamp(64px, 8vw, 120px); padding-top: 0; }
