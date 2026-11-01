@@ -209,6 +209,7 @@ kbd { font: inherit; font-size: .85em; border: 1px solid currentColor; border-ra
   font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
   background: linear-gradient(0deg, rgba(8, 10, 14, .85), rgba(8, 10, 14, 0));
 }
+.tira figcaption small { display: block; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: .12em; opacity: .7; }
 /* las ilustraciones van rotuladas como tales: el juego es 2D y ellas no */
 .imagenes__grupo { margin-bottom: 14px; font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gris); }
 /* el cartel: vertical y entero, sobre una banda con la misma imagen desenfocada */
